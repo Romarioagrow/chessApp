@@ -19,10 +19,16 @@ public class Main {
 
 
 
-        System.out.println("OK");
+        //System.out.println("OK");
 
 
         Board board = new Board();
+
+        //System.out.println(board.toString());
+
+        Board.displayBoard();
+
+
 
 
     }

@@ -2,8 +2,8 @@ package figures;
 
 public class Knight extends Figure {
 
-    public Knight(boolean isWhite) {
-        super(isWhite);
+    public Knight(boolean isWhite, char figureChar) {
+        super(isWhite, figureChar);
     }
 
     @Override
