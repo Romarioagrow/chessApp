@@ -23,10 +23,19 @@ public class Board {
         initialiseBoard();
         gameRunning = true;
         whiteTurn = true;
+        displayBoard();
+    }
+
+    public static void move() {
+
+        if (whiteTurn) {
+            whiteMove();
+        }
+        else blackMove();
+
     }
 
     public static void whiteMove() {
-
 
 
     }
@@ -34,9 +43,14 @@ public class Board {
     public static void blackMove() {
 
 
+    }
+
+
+    public void moveCorrect() {
 
 
     }
+
 
     private void initialiseBoard() {
 
