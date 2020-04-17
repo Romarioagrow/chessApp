@@ -1,7 +1,6 @@
 package figures;
 
 public class Queen extends Figure {
-
     public Queen(boolean isWhite, char figureChar) {
         super(isWhite, figureChar);
     }

@@ -1,10 +1,7 @@
 public class Main {
 
-
-
-
-    /*
-    Упрощенный вариант шахмат
+/*
+Упрощенный вариант шахмат
 Стандартное шахматное поле.
 Играют два компьютера
 Стандартная расстановка фигур
@@ -17,19 +14,24 @@ public class Main {
 
     public static void main(String[] args) {
 
-
-
-        //System.out.println("OK");
-
-
         Board board = new Board();
-
-        //System.out.println(board.toString());
-
         Board.displayBoard();
 
 
+        while (Board.isGameRunning()) {
 
+
+            if (Board.isWhiteTurn()) {
+
+                Board.whiteMove();
+
+            }
+
+            else Board.blackMove();
+
+
+
+        }
 
     }
 

@@ -1,7 +1,6 @@
 package figures;
 
 public class Knight extends Figure {
-
     public Knight(boolean isWhite, char figureChar) {
         super(isWhite, figureChar);
     }
