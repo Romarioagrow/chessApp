@@ -1,3 +1,5 @@
+import game.Board;
+
 public class Main {
 
 /*
@@ -15,25 +17,8 @@ public class Main {
     public static void main(String[] args) {
 
         Board board = new Board();
-        //Board.displayBoard();
 
-
-        while (Board.isGameRunning()) {
-
-            Board.move();
-
-
-            /*if (Board.isWhiteTurn()) {
-
-                Board.whiteMove();
-
-            }
-
-            else Board.blackMove();*/
-
-
-
-        }
+        board.startGame();
 
     }
 

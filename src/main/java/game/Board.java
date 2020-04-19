@@ -1,4 +1,7 @@
+package game;
+
 import figures.*;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
 import lombok.ToString;
@@ -7,7 +10,6 @@ import lombok.ToString;
 @ToString
 public class Board {
 
-    @Getter
     private static boolean gameRunning;
 
     private static final Figure[][] chessBoard = new Figure[8][8];
@@ -26,12 +28,81 @@ public class Board {
         displayBoard();
     }
 
-    public static void move() {
+    public static boolean gameRunning() {
+        return gameRunning;
+    }
 
-        if (whiteTurn) {
-            whiteMove();
+    public static Figure[][] chessBoard() {
+        return chessBoard;
+    }
+
+
+    public void startGame() {
+
+        Player whitePlayer = new Player(true);
+        Player blackPlayer = new Player(false);
+
+
+        while (gameRunning()) {
+
+            try {
+
+                if (whiteTurn) {
+
+
+
+                    whitePlayer.move();
+                    whiteTurn = false;
+
+                    //move = whiteMove();
+                }
+                else {
+                    blackPlayer.move();   //;//move = blackMove();
+                    whiteTurn = true;
+                }
+
+            }
+            catch (InterruptedException e) {
+
+                e.printStackTrace();
+            }
+
+
+            //nextMove();
+
+
+            /*if (game.Board.isWhiteTurn()) {
+
+                game.Board.whiteMove();
+
+            }
+
+            else game.Board.blackMove();*/
+
         }
-        else blackMove();
+
+    }
+
+
+    public static void nextMove() {
+
+        /*try {
+
+        }*/
+
+
+
+        //move
+
+        /*if (whiteTurn) {
+
+            whitePlayer.move();
+
+            //move = whiteMove();
+        }
+        else  blackPlayer.move();   //;//move = blackMove();*/
+
+
 
     }
 
@@ -112,5 +183,6 @@ public class Board {
         }
         System.out.println("\n\n\ta\tb\tc\td\te\tf\tg\th");
     }
+
 
 }
