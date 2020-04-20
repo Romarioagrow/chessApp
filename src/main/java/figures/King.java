@@ -9,10 +9,10 @@ public class King extends Figure {
         super(isWhite, figureChar, row, cell);
     }
 
-    @Override
+    /*@Override
     public boolean isMoveValid(int fromRow, int fromCol, int toRow, int toCol) {
         return false;
-    }
+    }*/
 
     @Override
     public boolean figureCanMove() {

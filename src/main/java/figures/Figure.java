@@ -38,7 +38,7 @@ public abstract class Figure {
 
     public abstract boolean figureCanMove();
 
-    public abstract boolean isMoveValid(int fromRow, int fromCol, int toRow, int toCol);
+    /*public abstract boolean isMoveValid(int fromRow, int fromCol, int toRow, int toCol);*/
 
 
     public abstract boolean isCoordinatesValid(int ... coordinates);
