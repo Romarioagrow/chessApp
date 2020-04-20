@@ -33,13 +33,6 @@ public class Board {
         displayBoard();
     }
 
-
-    /*public void startGame() throws NullPointerException {
-
-        twoComputersGame();
-
-    }*/
-
     public static boolean gameRunning() {
         return gameRunning;
     }
@@ -54,8 +47,6 @@ public class Board {
     }
 
     public void twoComputersGame() {
-
-        //try {
         ComputerPlayer whitePlayer = new ComputerPlayer(true);
         ComputerPlayer blackPlayer = new ComputerPlayer(false);
 
@@ -71,6 +62,8 @@ public class Board {
                 }
             }
             catch (NullPointerException e) {
+                stopGame();
+                System.out.println("\n\n||||||||||||||||||||||||||");
                 System.out.println(e.getClass().getCanonicalName());
                 System.out.println("No More Available figures!");
                 System.out.println(printWinner() + " WINS!");
@@ -80,15 +73,9 @@ public class Board {
             }
         }
         System.out.println("Game is finished!");
-        /*}
-        catch (Exception e) {
-            e.printStackTrace();
-        }*/
-
     }
 
     private String printWinner() {
-        //return false;
         return isWhiteTurn() ? "White" : "Black";
     }
 
@@ -132,20 +119,12 @@ public class Board {
         Board.chessBoard[7][7] = new Rook(true, '\u2656', 7, 7);
     }
 
-
-    /*public static boolean isGameRunning() {
-        return gameRunning;
-    }*/
-
-
     private boolean moveValid() {
         return false;
     }
 
-
-    /*public static void displayBoard() {
-        System.out.println("\ta\tb\tc\td\te\tf\tg\th");
-
+    public static void displayBoard() {
+        System.out.println("\n\n\ta\tb\tc\td\te\tf\tg\th");
         for (byte row = 0; row < 8; row++) {
 
             System.out.println();
@@ -157,29 +136,8 @@ public class Board {
                 }
                 else System.out.print("[\u2001]");
             }
-            System.out.print("\t" + (8 - row));
-        }
-        System.out.println("\n\n\ta\tb\tc\td\te\tf\tg\th");
-    }*/
-
-    public static void displayBoard() {
-        System.out.println("\t0\t1\t2\t3\t4\t5\t6\t7");
-
-        for (byte row = 0; row < 8; row++) {
-
-            System.out.println();
-            System.out.print((row) + "\t");
-
-            for (byte col = 0; col < 8; col++) {
-                if (chessBoard[row][col] != null) {
-                    System.out.print("[" + chessBoard[row][col].getFigureChar() + "]");
-                }
-                else System.out.print("[\u2001]");
-            }
             System.out.print("\t" + (row));
         }
-        System.out.println("\n\n\ta\tb\tc\td\te\tf\tg\th");
+        System.out.println("\n\n\t0\t1\t2\t3\t4\t5\t6\t7");
     }
-
-
 }

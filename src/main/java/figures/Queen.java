@@ -10,7 +10,7 @@ public class Queen extends Figure {
     @Override
     public boolean figureCanMove() {
         System.out.println("\nCheck Queen");
-        System.out.format(this.toString() + "\nFigure Coords: %s-%s ", getRowPosition(), getColPosition());
+        System.out.format(this.toString() + "\nFigure Coords: %s-%s ", getRowPosition(), getColPosition()); ///
         System.out.println();
 
         availableMoves.clear();
@@ -54,10 +54,9 @@ public class Queen extends Figure {
         /*down-right*/
         resolveOffsetsDownRight(currentRow, currentCol);
 
-        //filterOffsetsByBoardBounds();
+        filterOwnFigures();
 
-        /*Filter null and opponent figures*/
-        //filterAvailableMoves();
+        /// ??? availableMoves EMPTY
 
         /*System.out.println("Queen moves: " + availableMoves.size());
         availableMoves.forEach(offsetArray -> {

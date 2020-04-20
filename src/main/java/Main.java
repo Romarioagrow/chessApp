@@ -15,6 +15,14 @@ public class Main {
 
     public static void main(String[] args) {
 
+
+        /*
+        !!!!! No moves for QUEEN, BISHOP, ROOK
+        *
+        *
+        *
+        * */
+
         Board board = new Board();
 
         board.twoComputersGame();

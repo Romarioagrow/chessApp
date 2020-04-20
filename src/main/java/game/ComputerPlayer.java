@@ -10,7 +10,6 @@ public class ComputerPlayer implements Player {
 
     public ComputerPlayer(boolean whitePlayer) {
         this.isWhitePlayer = whitePlayer;
-
     }
 
     @Override
@@ -20,34 +19,34 @@ public class ComputerPlayer implements Player {
             /*Comment about current move*/
             moveComment();
 
-
-            /*Get All available player figures*/
-            List<Figure> playerFigures = getAvailablePlayerFigures(isWhitePlayer); //getRandomValidFigureFromBoard(whitePlayer);
+            /*Get all available player`s figures*/
+            List<Figure> playerFigures = getAvailablePlayerFigures(isWhitePlayer);
             System.out.println("Available figures: " + playerFigures.size());
             /// System.out.println("List of figures: " + (playerFigures.toString()));
 
             /*Get random figure with list of available moves (empty cells, no own figures) */
             Figure randomFigure = getRandomValidFigureFromBoard(playerFigures);
-            System.out.println("Player Random figure: " + randomFigure.toString()); /// randomFigure.about()
-            System.out.println("Figure has possible moves: " + randomFigure.getAvailableMoves().size());
+            System.out.println("Player Random figure: " + randomFigure.toString()
+                    + "\nFigure has possible moves: " + randomFigure.getAvailableMoves().size()); /// randomFigure.about()
 
-
+            /*Get random figure move from its available moves*/
             int[] randomTurn = chooseRandomTurn(randomFigure);
             System.out.println("Random move to: " + Arrays.toString(randomTurn));
 
-
+            /*Make random move with random figure*/
             makeTurn(randomFigure, randomTurn);
 
             Board.displayBoard();
             Thread.sleep(500);
         }
-        catch (NullPointerException e) {
+        catch (ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();
-            System.out.println("No more figures!");
+            System.out.println(e.getClass().getCanonicalName());
+            System.out.println("ArrayIndexOutOfBoundsException!");
             Board.stopGame();
         }
         /*finally {
-
+            nextMove();
         }*/
     }
 
@@ -55,8 +54,8 @@ public class ComputerPlayer implements Player {
         int fromRow = randomFigure.getRowPosition();
         int fromCol = randomFigure.getColPosition();
 
-        int toRow = /*fromRow +*/ randomTurn[0];
-        int toCol = /*fromCol +*/ randomTurn[1];
+        int toRow = randomTurn[0];
+        int toCol = randomTurn[1];
 
         Figure targetFigure = Board.getFigureFromBoard(toRow, toCol);
 
@@ -72,13 +71,10 @@ public class ComputerPlayer implements Player {
         randomFigure.setColPosition(toCol);
     }
 
-
-
-
     private int[] chooseRandomTurn(Figure randomFigure) {
-        //System.out.println( randomFigure.getAvailableMoves().toString());
-        randomFigure.getAvailableMoves().forEach(ints -> {
-            System.out.println(ints[0] + ":" + ints[1]);
+        /**/
+        randomFigure.getAvailableMoves().forEach(offset -> {
+            System.out.println(offset[0] + ":" + offset[1]);
         });
         /**/
         return randomFigure.getAvailableMoves().get(new Random().nextInt(randomFigure.getAvailableMoves().size()));
@@ -91,9 +87,6 @@ public class ComputerPlayer implements Player {
     }
 
     private Figure getRandomValidFigureFromBoard(List<Figure> playerFigures) {
-        /// try {}
-        //boolean noFigure = true;
-
         /*Get random valid-to-move figure*/
         while (!playerFigures.isEmpty()) {
 
@@ -103,7 +96,9 @@ public class ComputerPlayer implements Player {
             if (randomFigure.figureCanMove()) {
                 return randomFigure;
             }
-            else {
+            else
+            {
+                /*Next figure from available*/
                 System.out.println("No moves for figure!");
                 playerFigures.remove(randomFigure);
             }
@@ -138,25 +133,5 @@ public class ComputerPlayer implements Player {
         });
 
         return figuresList;
-
-        /*if (whitePlayer) {
-            Arrays.stream(Board.chessBoard()).forEach(figures -> {
-                Arrays.stream(figures).forEach(figure -> {
-                    if (figure != null && figure.isFigureWhite()) {
-                        figuresList.add(figure);
-                    }
-                });
-            });
-            //List<Boolean> result = Arrays.stream(Board.chessBoard()).flatMap(array -> array.stream().map(value -> true)).collect(Collectors.toList());
-        }
-        else {
-            Arrays.stream(Board.chessBoard()).forEach(figures -> {
-                Arrays.stream(figures).forEach(figure -> {
-                    if (figure != null && !figure.isFigureWhite()) {
-                        figuresList.add(figure);
-                    }
-                });
-            });
-        }*/
     }
 }

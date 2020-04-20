@@ -23,9 +23,6 @@ public class Knight extends Figure {
 
         filterOwnFigures();
 
-        //filterOffsetsByBoardBounds();
-
-        //System.out.println(availableMoves.size());
         return !availableMoves.isEmpty();
     }
 }

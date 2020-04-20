@@ -9,7 +9,7 @@ public class Rook extends Figure {
     @Override
     public boolean figureCanMove() {
         System.out.println("\nCheck Rook");
-        System.out.format(this.toString() + "\nFigure Coords: %s-%s ", getRowPosition(), getColPosition());
+        System.out.format(this.toString() + "\nFigure Coords: %s-%s ", getRowPosition(), getColPosition()); ///
         System.out.println();
 
         availableMoves.clear();
@@ -38,7 +38,9 @@ public class Rook extends Figure {
         /*Right*/
         resolveOffsetsRight(currentRow, currentCol);
 
-        //filterOffsetsByBoardBounds();
+        filterOwnFigures();
+
+        /// ??? availableMoves EMPTY
 
         /*System.out.println("Rook moves: " + availableMoves.size());
         availableMoves.forEach(offsetArray -> {

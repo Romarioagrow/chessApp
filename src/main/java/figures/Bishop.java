@@ -2,6 +2,8 @@ package figures;
 
 import game.Figure;
 
+import java.util.Arrays;
+
 public class Bishop extends Figure {
     public Bishop(boolean isWhite, char figureChar, int row, int cell) {
         super(isWhite, figureChar, row, cell);
@@ -42,12 +44,15 @@ public class Bishop extends Figure {
         /*down-right*/
         resolveOffsetsDownRight(currentRow, currentCol);
 
-        //filterOffsetsByBoardBounds();
+        filterOwnFigures();
 
-        /*System.out.println("Bishop moves: " + availableMoves.size());
+
+        /// ??? availableMoves EMPTY
+
+        System.out.println("Bishop moves: " + availableMoves.size());
         availableMoves.forEach(offsetArray -> {
             System.out.println(Arrays.toString(offsetArray));
-        });*/
+        });
         return !availableMoves.isEmpty();
     }
 }
