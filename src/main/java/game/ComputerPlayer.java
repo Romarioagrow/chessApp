@@ -6,10 +6,10 @@ import java.util.*;
 
 public class ComputerPlayer implements Player {
 
-    private final boolean whitePlayer;
+    private final boolean isWhitePlayer;
 
     public ComputerPlayer(boolean whitePlayer) {
-        this.whitePlayer = whitePlayer;
+        this.isWhitePlayer = whitePlayer;
 
     }
 
@@ -19,18 +19,27 @@ public class ComputerPlayer implements Player {
         {
             moveComment();
 
-            List<Figure> playerFigures = getAvailablePlayerFigures(whitePlayer); //getRandomValidFigureFromBoard(whitePlayer);
-            System.out.println("Total figures: " + playerFigures.size());
-            System.out.println("List of figures: " + (playerFigures.toString()));
+            List<Figure> playerFigures = getAvailablePlayerFigures(isWhitePlayer); //getRandomValidFigureFromBoard(whitePlayer);
+            System.out.println("Available figures: " + playerFigures.size());
+            //System.out.println("List of figures: " + (playerFigures.toString()));
 
 
             Figure randomFigure = getRandomValidFigureFromBoard(playerFigures);
-            System.out.println("Random Figure: " + randomFigure.toString());
+            //System.out.println("Random Figure: " + randomFigure.toString());
+            //System.out.println("Figure has possible moves: " + randomFigure.getAvailableMoves().size());
+
+            //makeTurn(randomFigure);
+            System.out.println("Player Random figure: " + randomFigure.toString());
             System.out.println("Figure has possible moves: " + randomFigure.getAvailableMoves().size());
 
-            makeTurn(randomFigure);
+            int[] randomTurn = chooseRandomTurn(randomFigure);
+            System.out.println("Random move to: " + Arrays.toString(randomTurn));
 
+            makeTurn(randomFigure, randomTurn);
 
+            Board.displayBoard();
+
+            Thread.sleep(500);
 
         }
         catch (NullPointerException e) {
@@ -39,14 +48,38 @@ public class ComputerPlayer implements Player {
         }
     }
 
-    private void makeTurn(Figure randomFigure) {
-        System.out.println("Move figure: " + randomFigure.toString());
+    private void makeTurn(Figure randomFigure, int[] randomTurn) {
+        int fromRow = randomFigure.getRowPosition();
+        int fromCol = randomFigure.getColPosition();
+
+        int toRow = /*fromRow +*/ randomTurn[0];
+        int toCol = /*fromCol +*/ randomTurn[1];
+
+        Figure targetFigure = Board.getFigureFromBoard(toRow, toCol);
+
+        if (randomFigure.figureIsOpponent(targetFigure)) {
+            /// beatOpponentFigure();
+            Board.addBeatFigure(targetFigure);
+        }
+
+        /// moveFigure()
+        Board.chessBoard()[toRow][toCol] = randomFigure;
+        Board.chessBoard()[fromRow][fromCol] = null;
+        randomFigure.setRowPosition(toRow);
+        randomFigure.setColPosition(toCol);
     }
 
-    private void moveComment() throws InterruptedException {
-        if (this.whitePlayer) System.out.println("\nWhite turn!");
-        else System.out.println("Black turn!");
-        Thread.sleep(500);
+
+
+
+    private int[] chooseRandomTurn(Figure randomFigure) {
+        return randomFigure.getAvailableMoves().get(new Random().nextInt(randomFigure.getAvailableMoves().size()));
+    }
+
+    private void moveComment() {
+        System.out.println("_____________________________________");
+        if (this.isWhitePlayer) System.out.println("\nWhite turn!");
+        else System.out.println("\nBlack turn!");
     }
 
     private Figure getRandomValidFigureFromBoard(List<Figure> playerFigures) {
@@ -61,7 +94,10 @@ public class ComputerPlayer implements Player {
             if (randomFigure.figureCanMove()) {
                 return randomFigure;
             }
-            else playerFigures.remove(randomFigure);
+            else {
+                System.out.println("No moves for figure!");
+                playerFigures.remove(randomFigure);
+            }
         }
 
         /*If no valid-to-move figure available, end of game*/

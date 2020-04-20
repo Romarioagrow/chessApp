@@ -54,13 +54,15 @@ public class Queen extends Figure {
         /*down-right*/
         resolveOffsetsDownRight(currentRow, currentCol);
 
+        //filterOffsetsByBoardBounds();
+
         /*Filter null and opponent figures*/
         //filterAvailableMoves();
 
-        System.out.println("Queen moves: " + availableMoves.size());
+        /*System.out.println("Queen moves: " + availableMoves.size());
         availableMoves.forEach(offsetArray -> {
             System.out.println(Arrays.toString(offsetArray));
-        });
+        });*/
         return !availableMoves.isEmpty();
     }
 

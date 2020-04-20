@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @ToString
 public class Board {
@@ -19,6 +22,8 @@ public class Board {
 
     @Getter
     private static boolean whiteTurn, validMove = true;
+    
+    static List<Figure> beatFigures = new ArrayList<>();
 
     public Board() {
         standardFiguresArrangement();
@@ -37,6 +42,10 @@ public class Board {
         return chessBoard;
     }
 
+
+    public static void addBeatFigure(Figure figure) {
+        beatFigures.add(figure);
+    }
 
     public void startGame() throws NullPointerException {
         //try {
@@ -67,54 +76,11 @@ public class Board {
     }
 
     static void stopGame() {
-
         gameRunning = false;
-
     }
-
 
     public static Figure getFigureFromBoard(int row, int col) {
-        //return chessBoard[row][col];
         return chessBoard[row][col];
-
-    }
-
-    public static void nextMove() {
-
-        /*try {
-
-        }*/
-
-
-
-        //move
-
-        /*if (whiteTurn) {
-
-            whitePlayer.move();
-
-            //move = whiteMove();
-        }
-        else  blackPlayer.move();   //;//move = blackMove();*/
-
-
-
-    }
-
-    public static void whiteMove() {
-
-
-    }
-
-    public static void blackMove() {
-
-
-    }
-
-
-    public void moveCorrect() {
-
-
     }
 
 

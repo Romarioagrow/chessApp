@@ -38,10 +38,12 @@ public class Rook extends Figure {
         /*Right*/
         resolveOffsetsRight(currentRow, currentCol);
 
-        System.out.println("Rook moves: " + availableMoves.size());
+        //filterOffsetsByBoardBounds();
+
+        /*System.out.println("Rook moves: " + availableMoves.size());
         availableMoves.forEach(offsetArray -> {
             System.out.println(Arrays.toString(offsetArray));
-        });
+        });*/
         return !availableMoves.isEmpty();
     }
 }

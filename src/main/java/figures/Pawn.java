@@ -1,7 +1,5 @@
 package figures;
 
-import game.Board;
-
 import java.util.Arrays;
 
 public class Pawn extends Figure {
@@ -25,19 +23,21 @@ public class Pawn extends Figure {
         }
         else resolveBlackPawnOffsets(currentRow, currentCol);
 
-        System.out.println("Pawn moves: " + availableMoves.size());
+        //filterOffsetsByBoardBounds();
+
+        /*System.out.println("Pawn moves: " + availableMoves.size());
         availableMoves.forEach(offsetArray -> {
             System.out.println(Arrays.toString(offsetArray));
-        });
+        });*/
         return !availableMoves.isEmpty();
     }
 
 
     private void resolveWhitePawnOffsets(int currentRow, int currentCol) {
-        availableMoves.add(new int[]{-1, 0});
+        availableMoves.add(new int[]{currentRow - 1, currentCol});
 
         if (currentRow == 6) {
-            availableMoves.add(new int[]{-2, 0});
+            availableMoves.add(new int[]{currentRow - 2, currentCol});
         }
 
         int attackRow = currentRow - 1;
@@ -46,10 +46,10 @@ public class Pawn extends Figure {
 
 
     private void resolveBlackPawnOffsets(int currentRow, int currentCol) {
-        availableMoves.add(new int[]{1, 0});
+        availableMoves.add(new int[]{currentRow + 1, currentCol});
 
         if (currentRow == 1) {
-            availableMoves.add(new int[]{2, 0});
+            availableMoves.add(new int[]{currentRow + 2, currentCol});
         }
 
         int attackRow = currentRow + 1;
@@ -68,6 +68,8 @@ public class Pawn extends Figure {
         if (checkPawnAttackCorrect(attackRow, attackColLeft)) {
             availableMoves.add(new int[]{attackRow, attackColRight});
         }
+
+
     }
 
 }
