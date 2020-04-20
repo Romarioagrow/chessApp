@@ -16,6 +16,25 @@ public class Queen extends Figure {
         System.out.format(this.toString() + "\nFigure Coords: %s-%s ", getRowPosition(), getColPosition());
         System.out.println();
 
+        int currentRow = getRowPosition();
+        int currentCol = getColPosition();
+
+        for (int j = currentCol - 1, i = currentRow + 1; j > -1 && i < 7; j--, i++) {
+            //Square square = super.getSquare().getBoardSquare(i, j);
+
+
+            /*if (square.getPiece() == null) {
+                possibleMoves.add(square);
+            } else if (isOpponent(square.getPiece())) {
+                possibleMoves.add(square);
+                break;
+            } else {
+                break;
+            }*/
+        }
+
+
+
         return false;
     }
 

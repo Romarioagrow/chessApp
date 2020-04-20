@@ -152,7 +152,7 @@ public class Board {
     }
 
 
-    public static void displayBoard() {
+    /*public static void displayBoard() {
         System.out.println("\ta\tb\tc\td\te\tf\tg\th");
 
         for (byte row = 0; row < 8; row++) {
@@ -167,6 +167,25 @@ public class Board {
                 else System.out.print("[\u2001]");
             }
             System.out.print("\t" + (8 - row));
+        }
+        System.out.println("\n\n\ta\tb\tc\td\te\tf\tg\th");
+    }*/
+
+    public static void displayBoard() {
+        System.out.println("\ta\tb\tc\td\te\tf\tg\th");
+
+        for (byte row = 0; row < 8; row++) {
+
+            System.out.println();
+            System.out.print((row) + "\t");
+
+            for (byte col = 0; col < 8; col++) {
+                if (chessBoard[row][col] != null) {
+                    System.out.print("[" + chessBoard[row][col].getFigureChar() + "]");
+                }
+                else System.out.print("[\u2001]");
+            }
+            System.out.print("\t" + (row));
         }
         System.out.println("\n\n\ta\tb\tc\td\te\tf\tg\th");
     }
