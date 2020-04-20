@@ -33,19 +33,6 @@ public class Board {
         displayBoard();
     }
 
-    public static boolean gameRunning() {
-        return gameRunning;
-    }
-
-    public static Figure[][] chessBoard() {
-        return chessBoard;
-    }
-
-
-    public static void addBeatFigure(Figure figure) {
-        beatFigures.add(figure);
-    }
-
     public void twoComputersGame() {
         ComputerPlayer whitePlayer = new ComputerPlayer(true);
         ComputerPlayer blackPlayer = new ComputerPlayer(false);
@@ -75,6 +62,18 @@ public class Board {
         System.out.println("Game is finished!");
     }
 
+    public static boolean gameRunning() {
+        return gameRunning;
+    }
+
+    public static Figure[][] chessBoard() {
+        return chessBoard;
+    }
+
+    public static void addBeatFigure(Figure figure) {
+        beatFigures.add(figure);
+    }
+
     private String printWinner() {
         return isWhiteTurn() ? "White" : "Black";
     }
@@ -86,7 +85,6 @@ public class Board {
     public static Figure getFigureFromBoard(int row, int col) {
         return chessBoard[row][col];
     }
-
 
     private void standardFiguresArrangement() {
 
@@ -117,10 +115,6 @@ public class Board {
         Board.chessBoard[7][5] = new Bishop(true, '\u2657', 7, 5);
         Board.chessBoard[7][6] = new Knight(true, '\u2658', 7, 6);
         Board.chessBoard[7][7] = new Rook(true, '\u2656', 7, 7);
-    }
-
-    private boolean moveValid() {
-        return false;
     }
 
     public static void displayBoard() {
