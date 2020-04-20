@@ -42,14 +42,11 @@ public class Bishop extends Figure {
         /*down-right*/
         resolveOffsetsDownRight(currentRow, currentCol);
 
-        /*Filter null and opponent figures*/
-        //filterAvailableMoves();
 
         System.out.println("Bishop moves: " + availableMoves.size());
         availableMoves.forEach(offsetArray -> {
             System.out.println(Arrays.toString(offsetArray));
         });
-
         return !availableMoves.isEmpty();
     }
 }

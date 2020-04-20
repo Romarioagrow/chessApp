@@ -13,30 +13,11 @@ public class Main {
 Игра продолжается пока все игроки могут ходить
 */
 
-
     public static void main(String[] args) {
 
-        //try {
+        Board board = new Board();
 
-            Board board = new Board();
-
-            board.startGame();
-
-
-        //}
-
-
-        /*catch (NullPointerException e) {
-            e.printStackTrace();
-            System.out.println("No more figures!");
-        }*/
-
-        /*catch (InterruptedException e) {
-
-            e.printStackTrace();
-
-        }*/
+        board.startGame();
 
     }
-
 }

@@ -19,8 +19,6 @@ public class Knight extends Figure {
 
         resolveArrayOffsets(possibleOffsets);
 
-        //filterAvailableMoves();
-
         System.out.println(availableMoves.size());
         return !availableMoves.isEmpty();
     }

@@ -31,6 +31,10 @@ public abstract class Figure { /// implements Checkable
         return figure == null || figure.isFigureWhite() != this.isFigureWhite();
     }
 
+    public boolean figureIsOpponent(Figure figure) {
+        return figure != null && figure.isFigureWhite() != this.isFigureWhite();
+    }
+
     /*public boolean figureIsOpposite(figure) {
 
     }*/
@@ -53,9 +57,9 @@ public abstract class Figure { /// implements Checkable
     }*/
 
     protected void resolveArrayOffsets(int[][] possibleOffsets) {
-        availableMoves = Arrays.stream(possibleOffsets).filter(ints -> {
-            int row = ints[0];
-            int col = ints[1];
+        availableMoves = Arrays.stream(possibleOffsets).filter(offset -> {
+            int row = getRowPosition() + offset[0];
+            int col = getColPosition() + offset[1];
             return availableToAdd(Board.chessBoard()[row][col]);
         }).collect(Collectors.toList());
     }

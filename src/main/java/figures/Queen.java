@@ -61,7 +61,6 @@ public class Queen extends Figure {
         availableMoves.forEach(offsetArray -> {
             System.out.println(Arrays.toString(offsetArray));
         });
-
         return !availableMoves.isEmpty();
     }
 

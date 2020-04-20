@@ -22,8 +22,10 @@ public class Board {
 
     public Board() {
         standardFiguresArrangement();
+
         gameRunning = true;
         whiteTurn = true;
+
         displayBoard();
     }
 
@@ -70,6 +72,12 @@ public class Board {
 
     }
 
+
+    public static Figure getFigureFromBoard(int row, int col) {
+        //return chessBoard[row][col];
+        return chessBoard[row][col];
+
+    }
 
     public static void nextMove() {
 
