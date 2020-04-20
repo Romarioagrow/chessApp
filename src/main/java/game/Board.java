@@ -1,7 +1,6 @@
 package game;
 
 import figures.*;
-import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
 import lombok.ToString;
@@ -22,7 +21,7 @@ public class Board {
     private static boolean whiteTurn, validMove = true;
 
     public Board() {
-        initialiseBoard();
+        standardFiguresArrangement();
         gameRunning = true;
         whiteTurn = true;
         displayBoard();
@@ -39,8 +38,8 @@ public class Board {
 
     public void startGame() throws NullPointerException {
         //try {
-        Player whitePlayer = new Player(true);
-        Player blackPlayer = new Player(false);
+        ComputerPlayer whitePlayer = new ComputerPlayer(true);
+        ComputerPlayer blackPlayer = new ComputerPlayer(false);
 
         while (gameRunning()) {
             try {
@@ -111,35 +110,35 @@ public class Board {
     }
 
 
-    private void initialiseBoard() {
+    private void standardFiguresArrangement() {
 
         /*Black figures */
-        Board.chessBoard[0][0] = new Rook(false, '\u265C'/*,0,0*/);
-        Board.chessBoard[0][1] = new Knight(false, '\u265E');
-        Board.chessBoard[0][2] = new Bishop(false, '\u265D');
-        Board.chessBoard[0][3] = new Queen(false, '\u265B');
-        Board.chessBoard[0][4] = new King(false, '\u265A');
-        Board.chessBoard[0][5] = new Bishop(false, '\u265D');
-        Board.chessBoard[0][6] = new Knight(false, '\u265E');
-        Board.chessBoard[0][7] = new Rook(false, '\u265C');
+        Board.chessBoard[0][0] = new Rook(false, '\u265C',0, 0);
+        Board.chessBoard[0][1] = new Knight(false, '\u265E',0, 1);
+        Board.chessBoard[0][2] = new Bishop(false, '\u265D',0, 2);
+        Board.chessBoard[0][3] = new Queen(false, '\u265B',0, 3);
+        Board.chessBoard[0][4] = new King(false, '\u265A',0, 4);
+        Board.chessBoard[0][5] = new Bishop(false, '\u265D',0, 5);
+        Board.chessBoard[0][6] = new Knight(false, '\u265E',0, 6);
+        Board.chessBoard[0][7] = new Rook(false, '\u265C',0,7);
         /*Black pawns*/
         for (byte col = 0; col < 8; col++) {
-            Board.chessBoard[1][col] = new Pawn(false, '\u265F');
+            Board.chessBoard[1][col] = new Pawn(false, '\u265F', 1, col);
         }
 
         /*White pawns*/
         for (byte col = 0; col < 8; col++) {
-            Board.chessBoard[6][col] = new Pawn(true, '\u2659');
+            Board.chessBoard[6][col] = new Pawn(true, '\u2659', 6, col);
         }
         /*White figures*/
-        Board.chessBoard[7][0] = new Rook(true, '\u2656');
-        Board.chessBoard[7][1] = new Knight(true, '\u2658');
-        Board.chessBoard[7][2] = new Bishop(true, '\u2657');
-        Board.chessBoard[7][3] = new Queen(true, '\u2655');
-        Board.chessBoard[7][4] = new King(true, '\u2654');
-        Board.chessBoard[7][5] = new Bishop(true, '\u2657');
-        Board.chessBoard[7][6] = new Knight(true, '\u2658');
-        Board.chessBoard[7][7] = new Rook(true, '\u2656');
+        Board.chessBoard[7][0] = new Rook(true, '\u2656', 7, 0);
+        Board.chessBoard[7][1] = new Knight(true, '\u2658', 7, 1);
+        Board.chessBoard[7][2] = new Bishop(true, '\u2657', 7, 2);
+        Board.chessBoard[7][3] = new Queen(true, '\u2655', 7, 3);
+        Board.chessBoard[7][4] = new King(true, '\u2654', 7, 4);
+        Board.chessBoard[7][5] = new Bishop(true, '\u2657', 7, 5);
+        Board.chessBoard[7][6] = new Knight(true, '\u2658', 7, 6);
+        Board.chessBoard[7][7] = new Rook(true, '\u2656', 7, 7);
     }
 
 

@@ -16,20 +16,20 @@ public class Main {
 
     public static void main(String[] args) {
 
-        try {
+        //try {
 
             Board board = new Board();
 
             board.startGame();
 
 
-        }
+        //}
 
 
-        catch (NullPointerException e) {
+        /*catch (NullPointerException e) {
             e.printStackTrace();
             System.out.println("No more figures!");
-        }
+        }*/
 
         /*catch (InterruptedException e) {
 

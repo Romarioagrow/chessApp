@@ -1,8 +1,8 @@
 package figures;
 
 public class Rook extends Figure {
-    public Rook(boolean isWhite, char figureChar/*, byte row, byte cell*/) {
-        super(isWhite, figureChar);
+    public Rook(boolean isWhite, char figureChar, int row, int cell) {
+        super(isWhite, figureChar, row, cell);
     }
 
     @Override
@@ -12,6 +12,10 @@ public class Rook extends Figure {
 
     @Override
     public boolean figureCanMove() {
+        System.out.println("\nCheck Rook");
+        System.out.format(this.toString() + "\nFigure Coords: %s-%s ", getRowPosition(), getColPosition());
+        System.out.println();
+
         return false;
     }
 }

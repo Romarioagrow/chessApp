@@ -1,8 +1,8 @@
 package figures;
 
 public class Bishop extends Figure {
-    public Bishop(boolean isWhite, char figureChar) {
-        super(isWhite, figureChar);
+    public Bishop(boolean isWhite, char figureChar, int row, int cell) {
+        super(isWhite, figureChar, row, cell);
     }
 
     @Override
@@ -12,6 +12,10 @@ public class Bishop extends Figure {
 
     @Override
     public boolean figureCanMove() {
+        System.out.println("\nCheck Bishop");
+        System.out.format(this.toString() + "\nFigure Coords: %s-%s ", getRowPosition(), getColPosition());
+        System.out.println();
+
         return false;
     }
 

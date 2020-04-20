@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+
 @Data
 @NoArgsConstructor
 public abstract class Figure {
@@ -13,11 +15,15 @@ public abstract class Figure {
 
     //private int[][] position;
 
+    private int rowPosition, colPosition;
 
+    ArrayList<int[]> availableMoves = new ArrayList<>();
 
-    public Figure(boolean isWhite, char figureChar) {
+    public Figure(boolean isWhite, char figureChar, int rowPosition, int colPosition) {
         this.isWhite = isWhite;
         this.figureChar = figureChar;
+        this.rowPosition = rowPosition;
+        this.colPosition = colPosition;
     }
 
     public char getFigureChar() {
@@ -28,7 +34,7 @@ public abstract class Figure {
         return isWhite;
     }
 
-    public abstract boolean figureCanMove();
+    public abstract boolean figureCanMove(/*Figure figure*/);
 
     public abstract boolean isMoveValid(int fromRow, int fromCol, int toRow, int toCol);
 
