@@ -73,6 +73,12 @@ public class ComputerPlayer implements Player {
 
 
     private int[] chooseRandomTurn(Figure randomFigure) {
+        //System.out.println( randomFigure.getAvailableMoves().toString());
+
+        randomFigure.getAvailableMoves().forEach(ints -> {
+            System.out.println(ints[0] + ":" + ints[1]);
+        });
+
         return randomFigure.getAvailableMoves().get(new Random().nextInt(randomFigure.getAvailableMoves().size()));
     }
 

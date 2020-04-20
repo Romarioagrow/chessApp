@@ -17,7 +17,9 @@ public class Knight extends Figure {
                 {-2, 1}, {-1, 2}, {1, 2}, {2, 1}, {2, -1}, {1, -2}, {-1, -2}, {-2, -1}
         };
 
-        resolveArrayOffsets(possibleOffsets);
+        resolveOffsetBounds(possibleOffsets);
+
+        filterOwnFigures();
 
         //filterOffsetsByBoardBounds();
 

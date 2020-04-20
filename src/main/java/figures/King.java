@@ -17,7 +17,9 @@ public class King extends Figure {
                 {1, 0}, {0, 1}, {-1, 0}, {0, -1}, {1, 1}, {-1, 1}, {-1, -1}, {1, -1}
         };
 
-        resolveArrayOffsets(possibleOffsets);
+        resolveOffsetBounds(possibleOffsets);
+
+        //filterOwnFigures();
 
         //filterOffsetsByBoardBounds();
         //System.out.println(availableMoves.size());

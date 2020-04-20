@@ -61,29 +61,43 @@ public abstract class Figure { /// implements Checkable
 
     protected boolean checkPawnAttackCorrect(int attackRow, int attackCol) {
         /*If offset correct with board*/
-        if (checkCorrectOffset(attackRow, attackCol)) {
+        if (checkCorrectOffsetBounds(attackRow, attackCol)) {
             return figureIsOpponent(getFigureFromBoard(attackRow, attackCol));
         }
         return false;
     }
 
-    protected boolean checkCorrectOffset(int row, int col) {
+    protected boolean checkCorrectOffsetBounds(int row, int col) {
 
         System.out.println("row: " + row + "col: " + col);
         System.out.println("boolean: " + ((row >= 0 & row < 8) & (col >= 0 & col < 8)));
         return (row >= 0 & row < 8) & (col >= 0 & col < 8);
     }
 
-    protected void resolveArrayOffsets(int[][] possibleOffsets) {
-        availableMoves = Arrays.stream(possibleOffsets).filter(offset -> {
+    protected void resolveOffsetBounds(int[][] possibleOffsets) {
+        /*availableMoves = Arrays.stream(possibleOffsets).filter(offset -> {
+            int row = getRowPosition() + offset[0];
+            int col = getColPosition() + offset[1];
+            return checkCorrectOffsetBounds(row, col);
+            ///if (checkCorrectOffsetBounds(row, col)) {
+            ///    return offsetAvailableToMove(getFigureFromBoard(row, col));
+            ///}
+            ///return false;
+        }).collect(Collectors.toList());*/
+
+        for (int[] offset : possibleOffsets) {
             int row = getRowPosition() + offset[0];
             int col = getColPosition() + offset[1];
 
-            if (checkCorrectOffset(row, col)) {
-                return offsetAvailableToMove(getFigureFromBoard(row, col));
+            if (checkCorrectOffsetBounds(row, col)) {
+                availableMoves.add(new int[]{row, col});
             }
-            return false;
-        }).collect(Collectors.toList());
+        }
+
+        System.out.println("availableMoves.forEach");
+        availableMoves.forEach(offset -> {
+            System.out.println(offset[0] + ":" + offset[1]);
+        });
     }
 
     protected void resolveOffsetsUp(int currentRow, int currentCol) {
@@ -156,5 +170,14 @@ public abstract class Figure { /// implements Checkable
             }
             else break;
         }
+    }
+
+    protected void filterOwnFigures() {
+        //return offsetAvailableToMove(getFigureFromBoard(row, col));
+
+        /*availableMoves = availableMoves.stream().filter(offset -> {
+
+        })*/
+
     }
 }
