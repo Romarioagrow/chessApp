@@ -13,8 +13,6 @@ public abstract class Figure {
 
     private char figureChar;
 
-    //private int[][] position;
-
     private int rowPosition, colPosition;
 
     ArrayList<int[]> availableMoves = new ArrayList<>();
@@ -26,6 +24,10 @@ public abstract class Figure {
         this.colPosition = colPosition;
     }
 
+    public boolean figureIsOpposite(Figure figure) {
+        return figure.isFigureWhite() != this.isFigureWhite();
+    }
+
     public char getFigureChar() {
         return figureChar;
     }
@@ -34,9 +36,14 @@ public abstract class Figure {
         return isWhite;
     }
 
-    public abstract boolean figureCanMove(/*Figure figure*/);
+    public abstract boolean figureCanMove();
 
     public abstract boolean isMoveValid(int fromRow, int fromCol, int toRow, int toCol);
+
+
+    public abstract boolean isCoordinatesValid(int ... coordinates);
+
+
 
     //public abstract boolean figureCanMove();
 }

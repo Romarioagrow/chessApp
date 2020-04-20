@@ -19,4 +19,9 @@ public class Pawn extends Figure {
         return false;
     }
 
+    @Override
+    public boolean isCoordinatesValid(int... coordinates) {
+        return false;
+    }
+
 }

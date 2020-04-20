@@ -34,7 +34,7 @@ public class King extends Figure {
                 int moveCol = currentCol + possibleCoords[1];
                 Figure figure = Board.chessBoard()[moveRow][moveCol];
 
-                if (figure == null && validCoordinates()) {
+                if (figure == null || figureIsOpposite(figure)) {
                     availableMoves.add(new int[]{moveRow, moveCol});
                 }
             }
@@ -52,5 +52,8 @@ public class King extends Figure {
         return true;
     }
 
-
+    @Override
+    public boolean isCoordinatesValid(int... coordinates) {
+        return false;
+    }
 }

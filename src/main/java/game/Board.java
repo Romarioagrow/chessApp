@@ -172,7 +172,7 @@ public class Board {
     }*/
 
     public static void displayBoard() {
-        System.out.println("\ta\tb\tc\td\te\tf\tg\th");
+        System.out.println("\t0\t1\t2\t3\t4\t5\t6\t7");
 
         for (byte row = 0; row < 8; row++) {
 
