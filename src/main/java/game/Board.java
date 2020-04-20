@@ -38,7 +38,8 @@ public class Board {
         ComputerPlayer blackPlayer = new ComputerPlayer(false);
 
         while (gameRunning()) {
-            try {
+            try
+            {
                 if (whiteTurn) {
                     whitePlayer.move();
                     whiteTurn = false; ///

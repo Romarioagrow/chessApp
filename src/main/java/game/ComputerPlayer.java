@@ -51,11 +51,11 @@ public class ComputerPlayer implements Player {
     }
 
     private void makeTurn(Figure randomFigure, int[] randomTurn) {
-        int fromRow = randomFigure.getRowPosition();
-        int fromCol = randomFigure.getColPosition();
+        final int fromRow = randomFigure.getRowPosition();
+        final int fromCol = randomFigure.getColPosition();
 
-        int toRow = randomTurn[0];
-        int toCol = randomTurn[1];
+        final int toRow = randomTurn[0];
+        final int toCol = randomTurn[1];
 
         Figure targetFigure = Board.getFigureFromBoard(toRow, toCol);
 
@@ -86,10 +86,11 @@ public class ComputerPlayer implements Player {
         else System.out.println("\nBlack turn!");
     }
 
+    /*Get random valid-to-move figure*/
     private Figure getRandomValidFigureFromBoard(List<Figure> playerFigures) {
-        /*Get random valid-to-move figure*/
-        while (!playerFigures.isEmpty()) {
 
+        while (!playerFigures.isEmpty())
+        {
             Figure randomFigure = getRandomFigure(playerFigures);
 
             /*Check figure movement rule*/
