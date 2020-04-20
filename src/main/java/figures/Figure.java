@@ -56,11 +56,27 @@ public abstract class Figure { /// implements Checkable
         }).collect(Collectors.toList());
     }*/
 
+    protected boolean checkPawnAttackCorrect(int attackRow, int attackCol) {
+        /*If offset correct with board*/
+        if (checkCorrectOffset(attackRow, attackCol)) {
+            return figureIsOpponent(Board.getFigureFromBoard(attackRow, attackCol));
+        }
+        return false;
+    }
+
+    protected boolean checkCorrectOffset(int row, int col) {
+        return (row >= 0 & row < 8) & (col >= 0 & col < 8);
+    }
+
     protected void resolveArrayOffsets(int[][] possibleOffsets) {
         availableMoves = Arrays.stream(possibleOffsets).filter(offset -> {
             int row = getRowPosition() + offset[0];
             int col = getColPosition() + offset[1];
-            return availableToAdd(Board.chessBoard()[row][col]);
+
+            if (checkCorrectOffset(row, col)) {
+                return availableToAdd(Board.chessBoard()[row][col]);
+            }
+            return false;
         }).collect(Collectors.toList());
     }
 

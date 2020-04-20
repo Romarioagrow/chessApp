@@ -59,13 +59,13 @@ public class Pawn extends Figure {
     public void checkAttackOffsets(int attackRow) {
         /*AttackLeft*/
         int attackColLeft = getColPosition() - 1;
-        if (figureIsOpponent(Board.getFigureFromBoard(attackRow, attackColLeft))) {
+        if (checkPawnAttackCorrect(attackRow, attackColLeft)) {
             availableMoves.add(new int[]{attackRow, attackColLeft});
         }
 
         /*AttackRight*/
         int attackColRight = getColPosition() + 1;
-        if (figureIsOpponent(Board.getFigureFromBoard(attackRow, attackColRight))) {
+        if (checkPawnAttackCorrect(attackRow, attackColLeft)) {
             availableMoves.add(new int[]{attackRow, attackColRight});
         }
     }
