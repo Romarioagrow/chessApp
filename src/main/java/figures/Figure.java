@@ -1,5 +1,6 @@
 package figures;
 
+import game.Board;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -173,11 +174,54 @@ public abstract class Figure { /// implements Checkable
     }
 
     protected void filterOwnFigures() {
+
+        //return Board.getFigureFromBoard()
+        availableMoves = availableMoves.stream()
+                .filter(this::checkOwnFigureOffset).collect(Collectors.toList());
+
+        System.out.println(".filter" + availableMoves.size());
+
+        /*availableMoves.stream().filter(offset -> {
+            return Board.
+        })*/
+
         //return offsetAvailableToMove(getFigureFromBoard(row, col));
 
         /*availableMoves = availableMoves.stream().filter(offset -> {
 
         })*/
+
+    }
+
+    private boolean checkOwnFigureOffset(int[] offset) {
+        //return false;
+
+        /// delete cels with own
+
+
+
+
+
+
+        /*
+
+        Board includes squares
+        Square includes figure
+
+        abstract class Square
+
+        abstract class Figure extends Square
+
+        class King extends Figure
+
+
+        */
+
+        Figure figure = Board.getFigureFromBoard(offset[0], offset[1]);
+
+        return figure == null || (figure.isWhite() == this.isWhite());
+
+
 
     }
 }

@@ -43,6 +43,7 @@ public class ComputerPlayer implements Player {
 
         }
         catch (NullPointerException e) {
+            e.printStackTrace();
             System.out.println("No more figures!");
             Board.stopGame();
         }
