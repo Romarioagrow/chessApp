@@ -1,6 +1,6 @@
 package figures;
 
-import java.util.Arrays;
+import game.Figure;
 
 public class Pawn extends Figure {
     public Pawn(boolean isWhite, char figureChar, int row, int cell) {

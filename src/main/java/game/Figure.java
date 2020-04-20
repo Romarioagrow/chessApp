@@ -1,11 +1,10 @@
-package figures;
+package game;
 
-import game.Board;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import rules.ChessFigure;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,14 +12,16 @@ import static game.Board.getFigureFromBoard;
 
 @Data
 @NoArgsConstructor
-public abstract class Figure { /// implements Checkable
+public abstract class Figure implements ChessFigure {
     private boolean isWhite;
 
     private char figureChar;
 
     private int rowPosition, colPosition;
 
-    List<int[]> availableMoves = new ArrayList<>();
+    public List<int[]> availableMoves = new ArrayList<>();
+
+    /*public abstract boolean figureCanMove();*/
 
     public Figure(boolean isWhite, char figureChar, int rowPosition, int colPosition) {
         this.isWhite = isWhite;
@@ -46,21 +47,7 @@ public abstract class Figure { /// implements Checkable
         return isWhite;
     }
 
-    public abstract boolean figureCanMove();
-
-    /*public void filterOffsetsByBoardBounds() {
-
-        availableMoves = availableMoves.stream()
-
-                .filter(offset -> {
-
-                    System.out.println("offset[0]: "+ offset[0] + "offset[1]: " + offset[1]);
-                    return ((offset[0] >= 0 & offset[0] < 8) && (offset[1] >= 0 & offset[1] < 8));
-                }).collect(Collectors.toList());
-
-    }*/
-
-    protected boolean checkPawnAttackCorrect(int attackRow, int attackCol) {
+    public boolean checkPawnAttackCorrect(int attackRow, int attackCol) {
         /*If offset correct with board*/
         if (checkCorrectOffsetBounds(attackRow, attackCol)) {
             return figureIsOpponent(getFigureFromBoard(attackRow, attackCol));
@@ -68,24 +55,14 @@ public abstract class Figure { /// implements Checkable
         return false;
     }
 
-    protected boolean checkCorrectOffsetBounds(int row, int col) {
-
+    public boolean checkCorrectOffsetBounds(int row, int col) {
         System.out.println("row: " + row + "col: " + col);
         System.out.println("boolean: " + ((row >= 0 & row < 8) & (col >= 0 & col < 8)));
+        /**/
         return (row >= 0 & row < 8) & (col >= 0 & col < 8);
     }
 
-    protected void resolveOffsetBounds(int[][] possibleOffsets) {
-        /*availableMoves = Arrays.stream(possibleOffsets).filter(offset -> {
-            int row = getRowPosition() + offset[0];
-            int col = getColPosition() + offset[1];
-            return checkCorrectOffsetBounds(row, col);
-            ///if (checkCorrectOffsetBounds(row, col)) {
-            ///    return offsetAvailableToMove(getFigureFromBoard(row, col));
-            ///}
-            ///return false;
-        }).collect(Collectors.toList());*/
-
+    public void resolveOffsetBounds(int[][] possibleOffsets) {
         for (int[] offset : possibleOffsets) {
             int row = getRowPosition() + offset[0];
             int col = getColPosition() + offset[1];
@@ -95,13 +72,24 @@ public abstract class Figure { /// implements Checkable
             }
         }
 
+        /**/
         System.out.println("availableMoves.forEach");
         availableMoves.forEach(offset -> {
             System.out.println(offset[0] + ":" + offset[1]);
         });
+
+        /*availableMoves = Arrays.stream(possibleOffsets).filter(offset -> {
+            int row = getRowPosition() + offset[0];
+            int col = getColPosition() + offset[1];
+            return checkCorrectOffsetBounds(row, col);
+            ///if (checkCorrectOffsetBounds(row, col)) {
+            ///    return offsetAvailableToMove(getFigureFromBoard(row, col));
+            ///}
+            ///return false;
+        }).collect(Collectors.toList());*/
     }
 
-    protected void resolveOffsetsUp(int currentRow, int currentCol) {
+    public void resolveOffsetsUp(int currentRow, int currentCol) {
         for (int row = currentRow; row >= 0; row--) {
             if (offsetAvailableToMove(getFigureFromBoard(row, currentCol))) {
                 availableMoves.add(new int[] {row, currentCol});
@@ -110,7 +98,7 @@ public abstract class Figure { /// implements Checkable
         }
     }
 
-    protected void resolveOffsetsDown(int currentRow, int currentCol) {
+    public void resolveOffsetsDown(int currentRow, int currentCol) {
         for (int row = currentRow; row < 8; row++) {
             if (offsetAvailableToMove(getFigureFromBoard(row, currentCol))) {
                 availableMoves.add(new int[] {row, currentCol});
@@ -119,7 +107,7 @@ public abstract class Figure { /// implements Checkable
         }
     }
 
-    protected void resolveOffsetsLeft(int currentRow, int currentCol) {
+    public void resolveOffsetsLeft(int currentRow, int currentCol) {
         for (int col = currentCol; col >= 0; col--) {
             if (offsetAvailableToMove(getFigureFromBoard(currentRow, currentCol))) {
                 availableMoves.add(new int[] {currentRow, currentCol});
@@ -128,7 +116,7 @@ public abstract class Figure { /// implements Checkable
         }
     }
 
-    protected void resolveOffsetsRight(int currentRow, int currentCol) {
+    public void resolveOffsetsRight(int currentRow, int currentCol) {
         for (int col = currentCol; col < 8; col++) {
             if (offsetAvailableToMove(getFigureFromBoard(currentRow, currentCol))) {
                 availableMoves.add(new int[] {currentRow, currentCol});
@@ -137,7 +125,7 @@ public abstract class Figure { /// implements Checkable
         }
     }
 
-    protected void resolveOffsetsUpLeft(int currentRow, int currentCol) {
+    public void resolveOffsetsUpLeft(int currentRow, int currentCol) {
         for (int row = currentRow, col = currentCol; row >= 0 & col >= 0; row--, col--) {
             if (offsetAvailableToMove(getFigureFromBoard(currentRow, currentCol))) {
                 availableMoves.add(new int[] {row, currentCol});
@@ -146,7 +134,7 @@ public abstract class Figure { /// implements Checkable
         }
     }
 
-    protected void resolveOffsetsUpRight(int currentRow, int currentCol) {
+    public void resolveOffsetsUpRight(int currentRow, int currentCol) {
         for (int row = currentRow, col = currentCol; row >= 0 & col < 8; row--, col++) {
             if (offsetAvailableToMove(getFigureFromBoard(currentRow, currentCol))) {
                 availableMoves.add(new int[] {row, currentCol});
@@ -155,7 +143,7 @@ public abstract class Figure { /// implements Checkable
         }
     }
 
-    protected void resolveOffsetsDownLeft(int currentRow, int currentCol) {
+    public void resolveOffsetsDownLeft(int currentRow, int currentCol) {
         for (int row = currentRow, col = currentCol; row < 8 & col >= 0; row++, col--) {
             if (offsetAvailableToMove(getFigureFromBoard(currentRow, currentCol))) {
                 availableMoves.add(new int[] {row, currentCol});
@@ -164,7 +152,7 @@ public abstract class Figure { /// implements Checkable
         }
     }
 
-    protected void resolveOffsetsDownRight(int currentRow, int currentCol) {
+    public void resolveOffsetsDownRight(int currentRow, int currentCol) {
         for (int row = currentRow, col = currentCol; row < 8 & col < 8; row++, col++) {
             if (offsetAvailableToMove(getFigureFromBoard(currentRow, currentCol))) {
                 availableMoves.add(new int[] {row, currentCol});
@@ -173,9 +161,20 @@ public abstract class Figure { /// implements Checkable
         }
     }
 
-    protected void filterOwnFigures() {
+    public void filterOwnFigures() {
+
+
+
 
         //return Board.getFigureFromBoard()
+
+        /*for (int[] offset : availableMoves) {
+
+
+
+        }*/
+
+
         availableMoves = availableMoves.stream()
                 .filter(this::checkOwnFigureOffset).collect(Collectors.toList());
 
@@ -195,12 +194,7 @@ public abstract class Figure { /// implements Checkable
 
     private boolean checkOwnFigureOffset(int[] offset) {
         //return false;
-
         /// delete cels with own
-
-
-
-
 
 
         /*
@@ -219,7 +213,14 @@ public abstract class Figure { /// implements Checkable
 
         Figure figure = Board.getFigureFromBoard(offset[0], offset[1]);
 
-        return figure == null || (figure.isWhite() == this.isWhite());
+
+        if (figure == null) {
+            return true;
+        }
+
+        return figure.isWhite() != this.isWhite();
+
+        //return figure == null || (figure.isWhite() == this.isWhite());
 
 
 

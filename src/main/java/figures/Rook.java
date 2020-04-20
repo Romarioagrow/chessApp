@@ -1,5 +1,5 @@
 package figures;
-import java.util.Arrays;
+import game.Figure;
 
 public class Rook extends Figure {
     public Rook(boolean isWhite, char figureChar, int row, int cell) {

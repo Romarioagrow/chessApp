@@ -1,6 +1,6 @@
 package figures;
 
-import java.util.Arrays;
+import game.Figure;
 
 public class Queen extends Figure {
     public Queen(boolean isWhite, char figureChar, int row, int cell) {

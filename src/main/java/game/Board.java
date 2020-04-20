@@ -30,9 +30,15 @@ public class Board {
 
         gameRunning = true;
         whiteTurn = true;
-
         displayBoard();
     }
+
+
+    /*public void startGame() throws NullPointerException {
+
+        twoComputersGame();
+
+    }*/
 
     public static boolean gameRunning() {
         return gameRunning;
@@ -47,22 +53,27 @@ public class Board {
         beatFigures.add(figure);
     }
 
-    public void startGame() throws NullPointerException {
+    public void twoComputersGame() {
+
         //try {
         ComputerPlayer whitePlayer = new ComputerPlayer(true);
         ComputerPlayer blackPlayer = new ComputerPlayer(false);
 
         while (gameRunning()) {
             try {
-
                 if (whiteTurn) {
                     whitePlayer.move();
-                    whiteTurn = false;
+                    whiteTurn = false; ///
                 }
                 else {
                     blackPlayer.move();
-                    whiteTurn = true;
+                    whiteTurn = true; ///
                 }
+            }
+            catch (NullPointerException e) {
+                System.out.println(e.getClass().getCanonicalName());
+                System.out.println("No More Available figures!");
+                System.out.println(printWinner() + " WINS!");
             }
             catch (InterruptedException e) {
                 e.printStackTrace();
@@ -73,6 +84,12 @@ public class Board {
         catch (Exception e) {
             e.printStackTrace();
         }*/
+
+    }
+
+    private String printWinner() {
+        //return false;
+        return isWhiteTurn() ? "White" : "Black";
     }
 
     static void stopGame() {

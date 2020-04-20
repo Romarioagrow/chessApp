@@ -1,5 +1,7 @@
 package figures;
 
+import game.Figure;
+
 public class Knight extends Figure {
     public Knight(boolean isWhite, char figureChar, int row, int cell) {
         super(isWhite, figureChar, row, cell);

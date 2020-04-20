@@ -1,6 +1,6 @@
 package figures;
 
-import java.util.Arrays;
+import game.Figure;
 
 public class Bishop extends Figure {
     public Bishop(boolean isWhite, char figureChar, int row, int cell) {
