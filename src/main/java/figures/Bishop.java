@@ -1,7 +1,5 @@
 package figures;
 
-import game.Board;
-
 import java.util.Arrays;
 
 public class Bishop extends Figure {
@@ -9,117 +7,49 @@ public class Bishop extends Figure {
         super(isWhite, figureChar, row, cell);
     }
 
-    /*@Override
-    public boolean isMoveValid(int fromRow, int fromCol, int toRow, int toCol) {
-        return false;
-    }*/
-
-
-
     @Override
     public boolean figureCanMove() {
         System.out.println("\nCheck Bishop");
         System.out.format(this.toString() + "\nFigure Coords: %s-%s ", getRowPosition(), getColPosition());
         System.out.println();
 
+        availableMoves.clear();
+
+        /*
+            Вычислить диапазоны в переделах x >= 0 & x < 8
+            все диапазоны вверх-влево,
+            все диапазоны вниз-влево,
+            все диапазоны вверх-вправо,
+            все диапазоны вниз-вправо,
+
+            отфильтровать null и opponentFigure()
+
+            add to allPossibleMoves
+        */
 
         int currentRow = getRowPosition();
         int currentCol = getColPosition();
 
         /*up-left*/
-        for (int i = 1; i < 8 && ((currentRow + i >= 0 & currentRow + i < 8) & (currentCol - i >= 0 & currentCol - i < 8)); i++) {
-            Figure figure;
-
-            int rowUp = currentRow + i;
-            int colLeft = currentCol - i;
-            /*if (rowUp < 8)
-            {*/
-
-            System.out.println("\nrowUp: " + (rowUp));
-            System.out.println("colLeft: " + (colLeft));
-
-            figure = Board.chessBoard()[rowUp][colLeft];
-            if (figure == null || figureIsOpposite(figure)) {
-                availableMoves.add(new int[]{rowUp, colLeft});
-            }
-            else break;
-        }
-
+        resolveOffsetsUpLeft(currentRow, currentCol);
 
         /*up-right*/
-        for (int i = 1; i < 8 && ((currentRow + i >= 0 & currentRow + i < 8) & (currentCol + i >= 0 & currentCol + i < 8)); i++) {
-            Figure figure;
-
-            int rowUp = currentRow + i;
-            int colRight = currentCol + i;
-            /*if (rowUp < 8)
-            {*/
-
-            System.out.println("\nrowUp: " + (rowUp));
-            System.out.println("colRight: " + (colRight));
-
-            figure = Board.chessBoard()[rowUp][colRight];
-            if (figure == null || figureIsOpposite(figure)) {
-                availableMoves.add(new int[]{rowUp, colRight});
-            }
-            else break;
-        }
-
-
+        resolveOffsetsUpRight(currentRow, currentCol);
 
         /*down-left*/
-        for (int i = 1; i < 8 && ((currentRow - i >= 0 & currentRow - i < 8) & (currentCol - i >= 0 & currentCol - i < 8)); i++) {
-            Figure figure;
-
-            int rowDown = currentRow - i;
-            int colLeft = currentCol - i;
-            /*if (rowUp < 8)
-            {*/
-
-            System.out.println("\nrowDown: " + (rowDown));
-            System.out.println("colLeft: " + (colLeft));
-
-            figure = Board.chessBoard()[rowDown][colLeft];
-            if (figure == null || figureIsOpposite(figure)) {
-                availableMoves.add(new int[]{rowDown, colLeft});
-            }
-            else break;
-        }
-
+        resolveOffsetsDownLeft(currentRow, currentCol);
 
         /*down-right*/
-        for (int i = 1; i < 8 && ((currentRow - i >= 0 & currentRow - i < 8) & (currentCol + i >= 0 & currentCol + i < 8)); i++) {
-            Figure figure;
+        resolveOffsetsDownRight(currentRow, currentCol);
 
-            int rowDown = currentRow - i;
-            int colRight = currentCol + i;
-            /*if (rowUp < 8)
-            {*/
+        /*Filter null and opponent figures*/
+        //filterAvailableMoves();
 
-            System.out.println("\nrowDown: " + (rowDown));
-            System.out.println("colRight: " + (colRight));
-
-            figure = Board.chessBoard()[rowDown][colRight];
-            if (figure == null || figureIsOpposite(figure)) {
-                availableMoves.add(new int[]{rowDown, colRight});
-            }
-            else break;
-        }
-
-        System.out.println(availableMoves.size());
-
-        availableMoves.forEach(ints -> {
-            System.out.println(Arrays.toString(ints));
+        System.out.println("Bishop moves: " + availableMoves.size());
+        availableMoves.forEach(offsetArray -> {
+            System.out.println(Arrays.toString(offsetArray));
         });
 
         return !availableMoves.isEmpty();
-
-        //return false;
     }
-
-    @Override
-    public boolean isCoordinatesValid(int... coordinates) {
-        return false;
-    }
-
 }
