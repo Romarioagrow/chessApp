@@ -37,49 +37,37 @@ public class Board {
     }
 
 
-    public void startGame() {
-
+    public void startGame() throws NullPointerException {
+        //try {
         Player whitePlayer = new Player(true);
         Player blackPlayer = new Player(false);
 
-
         while (gameRunning()) {
-
             try {
 
                 if (whiteTurn) {
-
-
-
                     whitePlayer.move();
                     whiteTurn = false;
-
-                    //move = whiteMove();
                 }
                 else {
-                    blackPlayer.move();   //;//move = blackMove();
+                    blackPlayer.move();
                     whiteTurn = true;
                 }
-
             }
             catch (InterruptedException e) {
-
                 e.printStackTrace();
             }
-
-
-            //nextMove();
-
-
-            /*if (game.Board.isWhiteTurn()) {
-
-                game.Board.whiteMove();
-
-            }
-
-            else game.Board.blackMove();*/
-
         }
+        System.out.println("Game is finished!");
+        /*}
+        catch (Exception e) {
+            e.printStackTrace();
+        }*/
+    }
+
+    static void stopGame() {
+
+        gameRunning = false;
 
     }
 
@@ -126,7 +114,7 @@ public class Board {
     private void initialiseBoard() {
 
         /*Black figures */
-        Board.chessBoard[0][0] = new Rook(false, '\u265C');
+        Board.chessBoard[0][0] = new Rook(false, '\u265C'/*,0,0*/);
         Board.chessBoard[0][1] = new Knight(false, '\u265E');
         Board.chessBoard[0][2] = new Bishop(false, '\u265D');
         Board.chessBoard[0][3] = new Queen(false, '\u265B');

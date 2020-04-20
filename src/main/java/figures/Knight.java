@@ -10,4 +10,10 @@ public class Knight extends Figure {
         return false;
     }
 
+    @Override
+    public boolean figureCanMove() {
+        return false;
+    }
+
 }
+

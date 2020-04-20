@@ -16,9 +16,26 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Board board = new Board();
+        try {
 
-        board.startGame();
+            Board board = new Board();
+
+            board.startGame();
+
+
+        }
+
+
+        catch (NullPointerException e) {
+            e.printStackTrace();
+            System.out.println("No more figures!");
+        }
+
+        /*catch (InterruptedException e) {
+
+            e.printStackTrace();
+
+        }*/
 
     }
 

@@ -10,4 +10,9 @@ public class Pawn extends Figure {
         return false;
     }
 
+    @Override
+    public boolean figureCanMove() {
+        return false;
+    }
+
 }

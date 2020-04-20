@@ -9,8 +9,11 @@ import lombok.NoArgsConstructor;
 public abstract class Figure {
     private boolean isWhite;
 
-    //@Getter
     private char figureChar;
+
+    //private int[][] position;
+
+
 
     public Figure(boolean isWhite, char figureChar) {
         this.isWhite = isWhite;
@@ -25,7 +28,9 @@ public abstract class Figure {
         return isWhite;
     }
 
+    public abstract boolean figureCanMove();
+
     public abstract boolean isMoveValid(int fromRow, int fromCol, int toRow, int toCol);
 
-
+    //public abstract boolean figureCanMove();
 }

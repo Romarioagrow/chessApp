@@ -10,4 +10,12 @@ public class King extends Figure {
         return false;
     }
 
+    @Override
+    public boolean figureCanMove() {
+        return false;
+    }
+
+
+
+
 }

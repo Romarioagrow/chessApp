@@ -10,5 +10,9 @@ public class Queen extends Figure {
         return false;
     }
 
+    @Override
+    public boolean figureCanMove() {
+        return false;
+    }
 
 }
