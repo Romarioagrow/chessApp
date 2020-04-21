@@ -9,9 +9,7 @@ public class King extends Figure {
 
     @Override
     public boolean figureCanMove() {
-        System.out.println("\nCheck King");
-        System.out.format(this.toString() + "\nFigure Coords: %s-%s ", getRowPosition(), getColPosition());
-        System.out.println();
+        printFigureInfo("King");
 
         availableMoves.clear();
 

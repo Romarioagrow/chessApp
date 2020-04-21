@@ -52,40 +52,13 @@ public class Board {
             }
             catch (NullPointerException e) {
                 stopGame();
-                System.out.println("\n\n||||||||||||||||||||||||||");
-                System.out.println(e.getClass().getCanonicalName());
-                System.out.println("No More Available figures!");
-                System.out.println(printWinner() + " WINS!");
+                printGameResult(e);
             }
             catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
         System.out.println("Game is finished!");
-    }
-
-    public static boolean gameRunning() {
-        return gameRunning;
-    }
-
-    public static Figure[][] chessBoard() {
-        return chessBoard;
-    }
-
-    public static void addBeatFigure(Figure figure) {
-        beatFigures.add(figure);
-    }
-
-    private String printWinner() {
-        return isWhiteTurn() ? "White" : "Black";
-    }
-
-    static void stopGame() {
-        gameRunning = false;
-    }
-
-    public static Figure getFigureFromBoard(int row, int col) {
-        return chessBoard[row][col];
     }
 
     private void standardFiguresArrangement() {
@@ -135,5 +108,36 @@ public class Board {
             System.out.print("\t" + (row));
         }
         System.out.println("\n\n\t0\t1\t2\t3\t4\t5\t6\t7");
+    }
+
+    public static boolean gameRunning() {
+        return gameRunning;
+    }
+
+    public static Figure[][] chessBoard() {
+        return chessBoard;
+    }
+
+    public static void addBeatFigure(Figure figure) {
+        beatFigures.add(figure);
+    }
+
+    private String printWinner() {
+        return isWhiteTurn() ? "White" : "Black";
+    }
+
+    static void stopGame() {
+        gameRunning = false;
+    }
+
+    public static Figure getFigureFromBoard(int row, int col) {
+        return chessBoard[row][col];
+    }
+
+    private void printGameResult(NullPointerException e) {
+        System.out.println("\n\n||||||||||||||||||||||||||");
+        System.out.println(e.getClass().getCanonicalName());
+        System.out.println("No More Available figures!");
+        System.out.println(printWinner() + " WINS!");
     }
 }

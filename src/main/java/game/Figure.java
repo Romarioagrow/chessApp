@@ -10,15 +10,6 @@ import java.util.stream.Collectors;
 
 import static game.Board.getFigureFromBoard;
 
-/*
-        Board includes squares
-        Square includes figure
-
-        abstract class Square
-        abstract class Figure extends Square
-        class King extends Figure
-*/
-
 @Data
 @NoArgsConstructor
 public abstract class Figure implements ChessFigure {
@@ -244,12 +235,21 @@ public abstract class Figure implements ChessFigure {
         }
     }
 
-    /*public boolean offsetAvailableToMove(Figure figure) {
-        System.out.println("figure == null: " + (figure == null));
-        if (figure == null) return true;
-        System.out.println(figure.toString());
-        System.out.println("figure.isFigureWhite() != this.isFigureWhite(): " + (figure.isFigureWhite() != this.isFigureWhite()));
-        //if (figure != null && figure.isFigureWhite() != this.isFigureWhite()) return true;
-        return figure.isFigureWhite() != this.isFigureWhite();
-    }*/
+    protected void printFigureInfo(String figureName) {
+        System.out.format("\nCheck %s", figureName + "\n");
+        System.out.println("Coords: " + getRowPosition() + " - " + getColPosition());
+        //System.out.format("Figure Coords: %s - %s ", getRowPosition(), getColPosition() + "\n");
+    }
+
+
+    public void aboutFigure() {
+        String color = isWhite() ? "White " : "Black ";
+        System.out.println("Random figure: " + color + getClass().getSimpleName() + " " + getFigureChar());
+        System.out.println("Coords: " + getRowPosition() + " - " + getColPosition());
+        //System.out.format("Coords: %s - %s ", getRowPosition(), getColPosition());
+    }
+
+    public void printAllRandomMoves() {
+        this.getAvailableMoves().forEach(offset -> System.out.println(offset[0] + ":" + offset[1]));
+    }
 }

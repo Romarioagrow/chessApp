@@ -9,9 +9,8 @@ public class Knight extends Figure {
 
     @Override
     public boolean figureCanMove() {
-        System.out.println("\nCheck Knight");
-        System.out.format(this.toString() + "\nFigure Coords: %s-%s ", getRowPosition(), getColPosition());
-        System.out.println();
+        printFigureInfo("Knight");
+
 
         availableMoves.clear();
 

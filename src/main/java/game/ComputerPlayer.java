@@ -26,8 +26,7 @@ public class ComputerPlayer implements Player {
 
             /*Get random figure with list of available moves (empty cells, no own figures) */
             Figure randomFigure = getRandomValidFigureFromBoard(playerFigures);
-            System.out.println("Player Random figure: " + randomFigure.toString()
-                    + "\nFigure has possible moves: " + randomFigure.getAvailableMoves().size()); /// randomFigure.about()
+            randomFigure.aboutFigure();
 
             /*Get random figure move from its available moves*/
             int[] randomTurn = chooseRandomTurn(randomFigure);
@@ -72,10 +71,7 @@ public class ComputerPlayer implements Player {
     }
 
     private int[] chooseRandomTurn(Figure randomFigure) {
-        /**/
-        randomFigure.getAvailableMoves().forEach(offset -> {
-            System.out.println(offset[0] + ":" + offset[1]);
-        });
+        randomFigure.printAllRandomMoves();
         /**/
         return randomFigure.getAvailableMoves().get(new Random().nextInt(randomFigure.getAvailableMoves().size()));
     }
@@ -95,6 +91,8 @@ public class ComputerPlayer implements Player {
 
             /*Check figure movement rule*/
             if (randomFigure.figureCanMove()) {
+                System.out.println("Figure can move!");
+                System.out.println("Available moves: " + randomFigure.getAvailableMoves().size());
                 return randomFigure;
             }
             else

@@ -2,6 +2,6 @@ package rules;
 
 public interface Player {
 
-    abstract void move() throws InterruptedException;
+    void move() throws InterruptedException;
 
 }

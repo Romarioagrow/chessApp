@@ -9,9 +9,7 @@ public class Queen extends Figure {
 
     @Override
     public boolean figureCanMove() {
-        System.out.println("\nCheck Queen");
-        System.out.format(this.toString() + "\nFigure Coords: %s-%s ", getRowPosition(), getColPosition()); ///
-        System.out.println();
+        printFigureInfo("Queen");
 
         availableMoves.clear();
 
@@ -24,7 +22,6 @@ public class Queen extends Figure {
             все диапазоны вниз-влево,
             все диапазоны вверх-вправо,
             все диапазоны вниз-вправо,
-
             отсеить от x >= 0 & x < 8
         */
 
@@ -54,20 +51,6 @@ public class Queen extends Figure {
         /*down-right*/
         resolveOffsetsDownRight(currentRow, currentCol);
 
-        //filterOwnFigures();
-
-        /// ??? availableMoves EMPTY
-
-        /*System.out.println("Queen moves: " + availableMoves.size());
-        availableMoves.forEach(offsetArray -> {
-            System.out.println(Arrays.toString(offsetArray));
-        });*/
         return !availableMoves.isEmpty();
     }
-
-    /*@Override
-    public boolean isCoordinatesValid(int... coordinates) {
-        return false;
-    }*/
-
 }

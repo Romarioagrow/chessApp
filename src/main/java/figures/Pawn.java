@@ -9,9 +9,7 @@ public class Pawn extends Figure {
 
     @Override
     public boolean figureCanMove() {
-        System.out.println("\nCheck Pawn");
-        System.out.format(this.toString() + "\nFigure Coords: %s-%s ", getRowPosition(), getColPosition());
-        System.out.println();
+        printFigureInfo("Pawn");
 
         availableMoves.clear();
 
