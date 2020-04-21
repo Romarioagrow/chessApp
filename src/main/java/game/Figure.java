@@ -31,9 +31,6 @@ public abstract class Figure implements ChessFigure {
     }
 
     public boolean figureIsOpponent(Figure figure) {
-
-        //System.out.println(figure.toString());
-
         return figure != null && figure.isFigureWhite() != this.isFigureWhite();
     }
 
@@ -46,14 +43,7 @@ public abstract class Figure implements ChessFigure {
     }
 
     public boolean checkPawnOffsetCorrect(int pawnRow, int pawnCol) {
-
         return checkCorrectOffsetBounds(pawnRow, pawnCol) && Board.getFigureFromBoard(pawnRow, pawnCol) == null;
-
-        /*If offset correct with board*/
-        /*if (checkCorrectOffsetBounds(attackRow, attackCol)) {
-            return figureIsOpponent(getFigureFromBoard(attackRow, attackCol));
-        }
-        return false;*/
     }
 
     public boolean checkCorrectOffsetBounds(int row, int col) {
