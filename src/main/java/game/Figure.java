@@ -31,6 +31,9 @@ public abstract class Figure implements ChessFigure {
     }
 
     public boolean figureIsOpponent(Figure figure) {
+
+        //System.out.println(figure.toString());
+
         return figure != null && figure.isFigureWhite() != this.isFigureWhite();
     }
 
@@ -250,6 +253,7 @@ public abstract class Figure implements ChessFigure {
     }
 
     public void printAllRandomMoves() {
+        System.out.println("All turns:");
         this.getAvailableMoves().forEach(offset -> System.out.println(offset[0] + ":" + offset[1]));
     }
 }
