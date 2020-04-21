@@ -45,12 +45,15 @@ public abstract class Figure implements ChessFigure {
         return isWhite;
     }
 
-    public boolean checkPawnAttackCorrect(int attackRow, int attackCol) {
+    public boolean checkPawnOffsetCorrect(int pawnRow, int pawnCol) {
+
+        return checkCorrectOffsetBounds(pawnRow, pawnCol) && Board.getFigureFromBoard(pawnRow, pawnCol) == null;
+
         /*If offset correct with board*/
-        if (checkCorrectOffsetBounds(attackRow, attackCol)) {
+        /*if (checkCorrectOffsetBounds(attackRow, attackCol)) {
             return figureIsOpponent(getFigureFromBoard(attackRow, attackCol));
         }
-        return false;
+        return false;*/
     }
 
     public boolean checkCorrectOffsetBounds(int row, int col) {

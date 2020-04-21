@@ -1,6 +1,5 @@
 package figures;
 
-import game.Board;
 import game.Figure;
 
 import static game.Board.getFigureFromBoard;
@@ -31,11 +30,11 @@ public class Pawn extends Figure {
 
 
     private void resolveWhitePawnOffsets(int currentRow, int currentCol) {
-        if (currentRow < 8 && Board.getFigureFromBoard(currentRow - 1, currentCol) == null) {
+        if (currentRow < 8 && checkPawnOffsetCorrect(currentRow - 1, currentCol)) {
             availableMoves.add(new int[]{currentRow - 1, currentCol});
         }
 
-        if (currentRow == 6 && Board.getFigureFromBoard(currentRow - 2, currentCol) == null) {
+        if (currentRow == 6 && checkPawnOffsetCorrect(currentRow - 2, currentCol)) {
             availableMoves.add(new int[]{currentRow - 2, currentCol});
         }
 
@@ -45,11 +44,11 @@ public class Pawn extends Figure {
 
 
     private void resolveBlackPawnOffsets(int currentRow, int currentCol) {
-        if (currentRow > 0 && Board.getFigureFromBoard(currentRow + 1, currentCol) == null) {
+        if (currentRow > 0 && checkPawnOffsetCorrect(currentRow + 1, currentCol)) {
             availableMoves.add(new int[]{currentRow + 1, currentCol});
         }
 
-        if (currentRow == 1 && Board.getFigureFromBoard(currentRow + 2, currentCol) == null) {
+        if (currentRow == 1 && checkPawnOffsetCorrect(currentRow + 2, currentCol)) {
             availableMoves.add(new int[]{currentRow + 2, currentCol});
         }
 
@@ -58,10 +57,10 @@ public class Pawn extends Figure {
     }
 
     public void checkAttackOffsets(int attackRow) {
-        /*AttackLeft*/
         int attackColLeft = getColPosition() - 1;
         int attackColRight = getColPosition() + 1;
 
+        /*AttackLeft*/
         if (checkCorrectOffsetBounds(attackRow, attackColLeft)) {
             Figure pawnAttackFigure = getFigureFromBoard(attackRow, attackColLeft);
             if (figureIsOpponent(pawnAttackFigure)) {
@@ -69,23 +68,12 @@ public class Pawn extends Figure {
             }
         }
 
+        /*AttackRight*/
         if (checkCorrectOffsetBounds(attackRow, attackColRight)) {
             Figure pawnAttackFigure = getFigureFromBoard(attackRow, attackColRight);
             if (figureIsOpponent(pawnAttackFigure)) {
                 availableMoves.add(new int[]{attackRow, attackColRight});
             }
         }
-
-
-
-
-        /*if (checkPawnAttackCorrect(attackRow, attackColLeft)) {
-            availableMoves.add(new int[]{attackRow, attackColLeft});
-        }*/
-        /*AttackRight*/
-        /*int attackColRight = getColPosition() + 1;
-        if (checkPawnAttackCorrect(attackRow, attackColLeft)) {
-            availableMoves.add(new int[]{attackRow, attackColRight});
-        }*/
     }
 }
