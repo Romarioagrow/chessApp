@@ -38,7 +38,7 @@ public class Rook extends Figure {
         /*Right*/
         resolveOffsetsRight(currentRow, currentCol);
 
-        filterOwnFigures();
+        //filterOwnFigures();
 
         /// ??? availableMoves EMPTY
 

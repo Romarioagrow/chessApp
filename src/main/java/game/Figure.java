@@ -39,14 +39,9 @@ public abstract class Figure implements ChessFigure {
         this.colPosition = colPosition;
     }
 
-    public boolean offsetAvailableToMove(Figure figure) {
-        return figure == null || figure.isFigureWhite() != this.isFigureWhite();
-    }
-
     public boolean figureIsOpponent(Figure figure) {
         return figure != null && figure.isFigureWhite() != this.isFigureWhite();
     }
-
 
     public char getFigureChar() {
         return figureChar;
@@ -99,73 +94,162 @@ public abstract class Figure implements ChessFigure {
         }
     }
 
+    public void addCurrentOffset(int currentRow, int currentCol) {
+        availableMoves.add(new int[] {currentRow, currentCol});
+    }
+
     /*!!! TO ONE CYCLE METHOD WITH PARAMS*/
 
-    /*!!! WRONG PARAMETERS*/
-
     public void resolveOffsetsUp(int currentRow, int currentCol) {
-        /**/
-        for (int row = currentRow; row >= 0; row--) {
-            if (offsetAvailableToMove(getFigureFromBoard(row, currentCol))) {
-                availableMoves.add(new int[] {row, currentCol});
+        for (int toRow = currentRow - 1; toRow >= 0; toRow--) {
+
+            if (checkCorrectOffsetBounds(currentRow, currentCol))
+            {
+                Figure checkFigure = Board.getFigureFromBoard(toRow, currentCol);
+                if (checkFigure == null) {
+                    addCurrentOffset(toRow, currentCol);
+                    continue;
+                }
+                if (figureIsOpponent(checkFigure)) {
+                    addCurrentOffset(toRow, currentCol);
+                }
+                break;
             }
-            else break;
         }
     }
+
     public void resolveOffsetsDown(int currentRow, int currentCol) {
-        for (int row = currentRow; row < 8; row++) {
-            if (offsetAvailableToMove(getFigureFromBoard(row, currentCol))) {
-                availableMoves.add(new int[] {row, currentCol});
+        for (int toRow = currentRow + 1; toRow < 8; toRow++) {
+
+            if (checkCorrectOffsetBounds(currentRow, currentCol))
+            {
+                Figure checkFigure = Board.getFigureFromBoard(toRow, currentCol);
+                if (checkFigure == null) {
+                    addCurrentOffset(toRow, currentCol);
+                    continue;
+                }
+                if (figureIsOpponent(checkFigure)) {
+                    addCurrentOffset(toRow, currentCol);
+                }
+                break;
             }
-            else break;
         }
     }
+
     public void resolveOffsetsLeft(int currentRow, int currentCol) {
-        for (int col = currentCol; col >= 0; col--) {
-            if (offsetAvailableToMove(getFigureFromBoard(currentRow, currentCol))) {
-                availableMoves.add(new int[] {currentRow, currentCol});
+        for (int toCol = currentCol - 1; toCol >= 0; toCol--) {
+
+            if (checkCorrectOffsetBounds(currentRow, toCol))
+            {
+                Figure checkFigure = Board.getFigureFromBoard(currentRow, toCol);
+                if (checkFigure == null) {
+                    addCurrentOffset(currentRow, toCol);
+                    continue;
+                }
+                if (figureIsOpponent(checkFigure)) {
+                    addCurrentOffset(currentRow, toCol);
+                }
+                break;
             }
-            else break;
         }
     }
+
     public void resolveOffsetsRight(int currentRow, int currentCol) {
-        for (int col = currentCol; col < 8; col++) {
-            if (offsetAvailableToMove(getFigureFromBoard(currentRow, currentCol))) {
-                availableMoves.add(new int[] {currentRow, currentCol});
+        for (int toCol = currentCol + 1; toCol < 8; toCol++) {
+
+            if (checkCorrectOffsetBounds(currentRow, toCol))
+            {
+                Figure checkFigure = Board.getFigureFromBoard(currentRow, toCol);
+                if (checkFigure == null) {
+                    addCurrentOffset(currentRow, toCol);
+                    continue;
+                }
+                if (figureIsOpponent(checkFigure)) {
+                    addCurrentOffset(currentRow, toCol);
+                }
+                break;
             }
-            else break;
         }
     }
+
     public void resolveOffsetsUpLeft(int currentRow, int currentCol) {
-        for (int row = currentRow, col = currentCol; row >= 0 & col >= 0; row--, col--) {
-            if (offsetAvailableToMove(getFigureFromBoard(currentRow, currentCol))) {
-                availableMoves.add(new int[] {row, currentCol});
+        for (int toRow = currentRow - 1, toCol = currentCol - 1; toRow >= 0 & toCol >= 0; toRow--, toCol--) {
+
+            if (checkCorrectOffsetBounds(toRow, toCol))
+            {
+                Figure checkFigure = Board.getFigureFromBoard(toRow, toCol);
+                if (checkFigure == null) {
+                    addCurrentOffset(toRow, toCol);
+                    continue;
+                }
+                if (figureIsOpponent(checkFigure)) {
+                    addCurrentOffset(toRow, toCol);
+                }
+                break;
             }
-            else break;
         }
     }
+
     public void resolveOffsetsUpRight(int currentRow, int currentCol) {
-        for (int row = currentRow, col = currentCol; row >= 0 & col < 8; row--, col++) {
-            if (offsetAvailableToMove(getFigureFromBoard(currentRow, currentCol))) {
-                availableMoves.add(new int[] {row, currentCol});
+        for (int toRow = currentRow - 1, toCol = currentCol + 1; toRow >= 0 & toCol < 8; toRow--, toCol++) {
+
+            if (checkCorrectOffsetBounds(toRow, toCol))
+            {
+                Figure checkFigure = Board.getFigureFromBoard(toRow, toCol);
+                if (checkFigure == null) {
+                    addCurrentOffset(toRow, toCol);
+                    continue;
+                }
+                if (figureIsOpponent(checkFigure)) {
+                    addCurrentOffset(toRow, toCol);
+                }
+                break;
             }
-            else break;
         }
     }
+
     public void resolveOffsetsDownLeft(int currentRow, int currentCol) {
-        for (int row = currentRow, col = currentCol; row < 8 & col >= 0; row++, col--) {
-            if (offsetAvailableToMove(getFigureFromBoard(currentRow, currentCol))) {
-                availableMoves.add(new int[] {row, currentCol});
+        for (int toRow = currentRow + 1, toCol = currentCol - 1; toRow < 8 & toCol >= 0; toRow++, toCol--) {
+
+            if (checkCorrectOffsetBounds(toRow, toCol))
+            {
+                Figure checkFigure = Board.getFigureFromBoard(toRow, toCol);
+                if (checkFigure == null) {
+                    addCurrentOffset(toRow, toCol);
+                    continue;
+                }
+                if (figureIsOpponent(checkFigure)) {
+                    addCurrentOffset(toRow, toCol);
+                }
+                break;
             }
-            else break;
         }
     }
+
     public void resolveOffsetsDownRight(int currentRow, int currentCol) {
-        for (int row = currentRow, col = currentCol; row < 8 & col < 8; row++, col++) {
-            if (offsetAvailableToMove(getFigureFromBoard(currentRow, currentCol))) {
-                availableMoves.add(new int[] {row, currentCol});
+        for (int toRow = currentRow + 1, toCol = currentCol + 1; toRow < 8 & toCol < 8; toRow++, toCol++) {
+
+            if (checkCorrectOffsetBounds(toRow, toCol))
+            {
+                Figure checkFigure = Board.getFigureFromBoard(toRow, toCol);
+                if (checkFigure == null) {
+                    addCurrentOffset(toRow, toCol);
+                    continue;
+                }
+                if (figureIsOpponent(checkFigure)) {
+                    addCurrentOffset(toRow, toCol);
+                }
+                break;
             }
-            else break;
         }
     }
+
+    /*public boolean offsetAvailableToMove(Figure figure) {
+        System.out.println("figure == null: " + (figure == null));
+        if (figure == null) return true;
+        System.out.println(figure.toString());
+        System.out.println("figure.isFigureWhite() != this.isFigureWhite(): " + (figure.isFigureWhite() != this.isFigureWhite()));
+        //if (figure != null && figure.isFigureWhite() != this.isFigureWhite()) return true;
+        return figure.isFigureWhite() != this.isFigureWhite();
+    }*/
 }

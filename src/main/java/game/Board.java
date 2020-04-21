@@ -22,7 +22,7 @@ public class Board {
 
     @Getter
     private static boolean whiteTurn, validMove = true;
-    
+
     static List<Figure> beatFigures = new ArrayList<>();
 
     public Board() {
@@ -42,11 +42,12 @@ public class Board {
             {
                 if (whiteTurn) {
                     whitePlayer.move();
-                    whiteTurn = false; ///
+                    whiteTurn = false;
                 }
-                else {
+                else
+                {
                     blackPlayer.move();
-                    whiteTurn = true; ///
+                    whiteTurn = true;
                 }
             }
             catch (NullPointerException e) {

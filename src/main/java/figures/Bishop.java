@@ -44,7 +44,7 @@ public class Bishop extends Figure {
         /*down-right*/
         resolveOffsetsDownRight(currentRow, currentCol);
 
-        filterOwnFigures();
+        //filterOwnFigures();
 
 
         /// ??? availableMoves EMPTY
